@@ -1,0 +1,2 @@
+D:\Projects\MYCHAT\Source\Client\clientExample\clientExample\bin\Debug\clientExample.exe.config
+D:\Projects\MYCHAT\Source\Client\clientExample\bin\Debug\clientExample.exe.config
