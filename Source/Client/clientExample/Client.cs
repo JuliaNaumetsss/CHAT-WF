@@ -98,6 +98,9 @@ namespace clientExample
                     OnError(e);
             }
         }
-        
+        public void WritePacket(Packet packet)
+        {
+            WriteRaw(packet);
+        }
     }
 }
