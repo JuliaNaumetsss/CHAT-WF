@@ -21,11 +21,87 @@ namespace clientExample
         public FormMain()
         {
             InitializeComponent();
+            AcceptButton = buttonConnect;
+            //Client.OnDataRecieved += OnDataRecieved;
+            //Client.OnDisconnect += (() => ButtonLogoutClick(null, null));
+            //Closing += FormMain_Closing;
+            //messageBox.TextChanged += MessageBoxTextChanged;
+            //Shown += FormMainShown;
         }
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
+            if (Sets.RegisterInstance != null)
+                if (!Sets.RegisterInstance.IsDisposed)
+                {
+                    Sets.RegisterInstance.Close();
+                }
+            Sets.RegisterInstance = new FormRegister();
+            Sets.RegisterInstance.ShowDialog();
+        }
 
+        private void buttonConnect_Click(object sender, EventArgs e)
+        {
+            groupConnect.Enabled = false;
+            if (!Client.Connect(IPADDRESS, PORT))
+            {
+                groupConnect.Enabled = true;
+                textBoxEmail.Select();
+                MessageBox.Show("Failed to connect to server.");
+                return;
+            }
+            Client.WritePacket(
+                new Packet(
+                    "LOGIN REQUEST",
+                    DataMap.Serialize(
+                        new List<string>
+                            {
+                                textBoxEmail.Text, textBoxPassword.Text
+                            })));
+        }
+
+        private void buttonChangeNick_Click(object sender, EventArgs e)
+        {
+            string newNickname = CurrentNickname;
+            var result = InputBox.Show("Change your nickname", "Edit your nickname, then press submit to save changes", ref newNickname, false);
+            if (result == DialogResult.OK)
+            {
+                Client.WritePacket(Packets.UpdateNickname(newNickname));
+                CurrentNickname = newNickname;
+            }
+        }
+
+        private void buttonSend_Click(object sender, EventArgs e)
+        {
+            var msgPack = new Packet("MESSAGE REQUEST", textBoxMessage.Text);
+            Client.WritePacket(msgPack);
+            textBoxMessage.Clear();
+            textBoxMessage.Select();
+        }
+
+        private void buttonLogout_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Client.TcpClient.Close();
+            }
+            catch
+            {
+            }
+            /*messageBox.Clear();
+            textBoxMessage.Clear();*/
+            groupConnect.Enabled = true;
+            //groupBox.Enabled = false;
+        }
+
+        private void buttonChangePass_Click(object sender, EventArgs e)
+        {
+            string newPass = "";
+            var result = InputBox.Show("Change your password", "Edit your password, then press submit to save changes", ref newPass, true);
+            if (result == DialogResult.OK)
+            {
+                Client.WritePacket(Packets.UpdatePassword(newPass));
+            }
         }
 
 

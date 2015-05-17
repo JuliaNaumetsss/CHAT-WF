@@ -107,6 +107,7 @@
             this.buttonConnect.TabIndex = 0;
             this.buttonConnect.Text = "Login";
             this.buttonConnect.UseVisualStyleBackColor = true;
+            this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
             // 
             // buttonCreate
             // 
@@ -149,6 +150,7 @@
             this.buttonLogout.TabIndex = 12;
             this.buttonLogout.Text = "Logout";
             this.buttonLogout.UseVisualStyleBackColor = true;
+            this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
             // 
             // buttonChangeNick
             // 
@@ -159,6 +161,7 @@
             this.buttonChangeNick.TabIndex = 13;
             this.buttonChangeNick.Text = "Edit Nickname";
             this.buttonChangeNick.UseVisualStyleBackColor = true;
+            this.buttonChangeNick.Click += new System.EventHandler(this.buttonChangeNick_Click);
             // 
             // buttonChangePass
             // 
@@ -169,6 +172,7 @@
             this.buttonChangePass.TabIndex = 14;
             this.buttonChangePass.Text = "Edit Password";
             this.buttonChangePass.UseVisualStyleBackColor = true;
+            this.buttonChangePass.Click += new System.EventHandler(this.buttonChangePass_Click);
             // 
             // messageBox
             // 
@@ -240,6 +244,7 @@
             this.buttonSend.TabIndex = 7;
             this.buttonSend.Text = "Send";
             this.buttonSend.UseVisualStyleBackColor = true;
+            this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
             // 
             // FormMain
             // 
