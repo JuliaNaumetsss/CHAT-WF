@@ -103,7 +103,144 @@ namespace clientExample
                 Client.WritePacket(Packets.UpdatePassword(newPass));
             }
         }
+        private void MessageBoxTextChanged(object sender, EventArgs e)
+        {
+            ScrollText(messageBox.Handle, WM_VSCROLL, SB_BOTTOM, 0);
+        }
+        private void TextBoxIpTextChanged(object sender, EventArgs e)
+        {
+            IPADDRESS = textBoxIp.Text;
+        }
+        private void FormMainShown(object sender, EventArgs e)
+        {
+            textBoxEmail.Select();
+        }
+        private void FormMain_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
+        }
 
+        private void OnDataRecieved(string data)
+        {
+            var packet = new Packet(data);
+            string command = packet.Command.ToUpper();
+            if (command == "LOGIN SUCCESS")
+            {
+                Invoke(new Action(() =>
+                                      {
+                                          groupBox.Enabled = true;
+                                          AcceptButton = buttonSend;
+                                          var map = packet.Carriage.Deserialize();
+                                          int uid = Convert.ToInt32(map[0]);
+                                          string nick = map[1];
+                                          CurrentNickname = nick;
+                                          CurrentUserId = uid;
+                                      }));
+            }
+            else if (command == "LOGIN FAILED")
+            {
+                Invoke(new Action(() =>
+                                      {
+                                          Disconnect();
+                                          MessageBox.Show(packet.Carriage, "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                          groupConnect.Enabled = true;
+                                          groupBox.Enabled = false;
+                                          AcceptButton = buttonConnect;
+                                      }));
+            }
+            else if (command == "USER LIST")
+            {
+                Invoke(new Action(() => UserListUpdate(packet.Carriage)));
+            }
+            else if (command == "MESSAGE")
+            {
+                Invoke(new Action(() => MessageRecieved(packet.Carriage)));
+            }
+            else if (command == "CREATE RESPONSE")
+            {
+                if (Sets.RegisterInstance == null) return;
+                if (Sets.RegisterInstance.IsDisposed) return;
+                Sets.RegisterInstance.Invoke(new Action(() =>
+                                                            {
+                                                                //textBoxPassword.Text = Sets.RegisterInstance.Password;
+                                                                //textBoxEmail.Text = Sets.RegisterInstance.Email;
+                                                                //Sets.RegisterInstance.labelRegister.Visible = false;
+                                                                Sets.RegisterInstance.Close();
+                                                                Disconnect();
+                                                                MessageBox.Show("Account created, you may now login.", "Create Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                                groupConnect.Enabled = true;
+                                                                groupBox.Enabled = false;
+                                                                AcceptButton = buttonConnect;
+                                                            }));
+            }
+            else if (command == "CREATE FAILED")
+            {
+                if (Sets.RegisterInstance == null) return;
+                if (Sets.RegisterInstance.IsDisposed) return;
+                Sets.RegisterInstance.Invoke(new Action(() =>
+                                                            {
+                                                                Disconnect();
+                                                                //Sets.RegisterInstance.labelRegister.Visible = false;
+                                                                //MessageBox.Show(packet.Carriage, "Create Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                groupConnect.Enabled = true;
+                                                                groupBox.Enabled = false;
+                                                                AcceptButton = buttonConnect;
+                                                            }));
+            }
+        }
+        private void MessageRecieved(string messageData)
+        {
+            var data = messageData.Deserialize();
+            string nickname = data[0];
+            string msg = data[1];
+            messageBox.AppendText(string.Format("<{0}> {1}\r\n", nickname, msg));
+        }
+        private void UserListUpdate(string rawdata)
+        {
+            var data = rawdata.Deserialize();
+            //onlineList.Clear();
 
+            foreach (var user in data)
+            {
+                var attr = user.Deserialize();
+                string nick = attr[0];
+                string role = attr[1];
+                bool isbanned = attr[2].ToLower() == "true";
+                string userid = attr[3];
+
+                var contextMenu = new ContextMenu();
+                var ban = new MenuItem("Ban", (a, b) => Client.WritePacket(Packets.UpdateRole(userid, "banned")));
+                var unban = new MenuItem("Unban", (a, b) => Client.WritePacket(Packets.UpdateRole(userid, "unbanned")));
+                var admin = new MenuItem("Admin", (a, b) => Client.WritePacket(Packets.UpdateRole(userid, Sets.UserRole.Admin)));
+                var reg = new MenuItem("Regularize", (a, b) => Client.WritePacket(Packets.UpdateRole(userid, Sets.UserRole.Regular)));
+                var kill = new MenuItem("Kill", (a, b) => Client.WritePacket(Packets.Kill(userid)));
+            }
+        }
+               // contextMenu.MenuItems.AddRange(new[]{admin, reg,GetSep(), ban, unban,GetSep(),kill});
+
+               //     onlineList.Controls.Add(
+                 /*       new CustomItem()
+                            {
+                                Nickname = nick,
+                                Status = (isbanned) ? "banned" : role,
+                                ContextMenu = contextMenu
+                            });
+            }
+        }*/
+        private MenuItem GetSep()
+        {
+            return new MenuItem("-");
+        }
+
+        private void Disconnect()
+        {
+            try
+            {
+                Client.TcpClient.Close();
+            }
+            catch
+            {
+            }
+        }
     }
 }
