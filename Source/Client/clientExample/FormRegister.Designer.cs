@@ -101,6 +101,7 @@
             this.buttonRegister.TabIndex = 0;
             this.buttonRegister.Text = "Submit";
             this.buttonRegister.UseVisualStyleBackColor = true;
+            this.buttonRegister.Click += new System.EventHandler(this.buttonRegister_Click);
             // 
             // label1
             // 
@@ -153,7 +154,7 @@
             this.labelRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelRegister.Location = new System.Drawing.Point(-4, 0);
             this.labelRegister.Name = "labelRegister";
-            this.labelRegister.Size = new System.Drawing.Size(274, 161);
+            this.labelRegister.Size = new System.Drawing.Size(274, 120);
             this.labelRegister.TabIndex = 10;
             this.labelRegister.Text = "Registering...";
             this.labelRegister.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

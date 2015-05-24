@@ -27,10 +27,20 @@ namespace clientExample
             MessageBox.Show("Your nickname is the name that will appear to other users.");
         }
 
-        private void ButtonRegisterClick(object sender, EventArgs e)
+        private void textPass_TextChanged(object sender, EventArgs e)
         {
-            //textPass.Text = "123";
-            //textConfirmPass.Text = "1234";
+            //textPass.PasswordChar = '*';
+            textPass.TextAlign = HorizontalAlignment.Center;
+        }
+
+        private void textConfirmPass_TextChanged(object sender, EventArgs e)
+        {
+            //textConfirmPass.PasswordChar = '*';
+            textConfirmPass.TextAlign = HorizontalAlignment.Center;
+        }
+
+        private void buttonRegister_Click(object sender, EventArgs e)
+        {
             if (string.IsNullOrEmpty(textEmail.Text))
             {
                 MessageBox.Show("Please enter an email");
@@ -63,18 +73,6 @@ namespace clientExample
             var creq = Packets.CreateRequest(textEmail.Text, textPass.Text, textNick.Text);
             FormMain.Client.WritePacket(creq);
             labelRegister.Visible = true;
-        }
-
-        private void textPass_TextChanged(object sender, EventArgs e)
-        {
-            //textPass.PasswordChar = '*';
-            textPass.TextAlign = HorizontalAlignment.Center;
-        }
-
-        private void textConfirmPass_TextChanged(object sender, EventArgs e)
-        {
-            //textConfirmPass.PasswordChar = '*';
-            textConfirmPass.TextAlign = HorizontalAlignment.Center;
         }
     }
 }

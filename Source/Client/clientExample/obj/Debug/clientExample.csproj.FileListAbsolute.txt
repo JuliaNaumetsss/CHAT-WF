@@ -1,2 +1,12 @@
 D:\Projects\MYCHAT\Source\Client\clientExample\clientExample\bin\Debug\clientExample.exe.config
 D:\Projects\MYCHAT\Source\Client\clientExample\bin\Debug\clientExample.exe.config
+D:\Projects\MYCHAT\Source\Client\clientExample\bin\Debug\clientExample.exe
+D:\Projects\MYCHAT\Source\Client\clientExample\bin\Debug\clientExample.pdb
+D:\Projects\MYCHAT\Source\Client\clientExample\obj\Debug\clientExample.csprojResolveAssemblyReference.cache
+D:\Projects\MYCHAT\Source\Client\clientExample\obj\Debug\clientExample.FormMain.resources
+D:\Projects\MYCHAT\Source\Client\clientExample\obj\Debug\clientExample.FormRegister.resources
+D:\Projects\MYCHAT\Source\Client\clientExample\obj\Debug\clientExample.Properties.Resources.resources
+D:\Projects\MYCHAT\Source\Client\clientExample\obj\Debug\clientExample.csproj.GenerateResource.Cache
+D:\Projects\MYCHAT\Source\Client\clientExample\obj\Debug\clientExample.exe
+D:\Projects\MYCHAT\Source\Client\clientExample\obj\Debug\clientExample.pdb
+D:\Projects\MYCHAT\Source\Client\clientExample\obj\Debug\clientExample.CustomList.resources
