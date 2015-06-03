@@ -1,0 +1,16 @@
+C:\Users\Michael\Documents\Visual Studio 2012\Projects\serverExample\serverExample\bin\Debug\serverExample.exe.config
+C:\Users\Michael\Documents\Visual Studio 2012\Projects\serverExample\serverExample\bin\Debug\serverExample.exe
+C:\Users\Michael\Documents\Visual Studio 2012\Projects\serverExample\serverExample\bin\Debug\serverExample.pdb
+C:\Users\Michael\Documents\Visual Studio 2012\Projects\serverExample\serverExample\bin\Debug\System.Data.SQLite.dll
+C:\Users\Michael\Documents\Visual Studio 2012\Projects\serverExample\serverExample\obj\Debug\serverExample.exe
+C:\Users\Michael\Documents\Visual Studio 2012\Projects\serverExample\serverExample\obj\Debug\serverExample.pdb
+C:\Users\Michael\Documents\PublicDistro\Source\Server\serverExample\bin\Debug\serverExample.exe.config
+C:\Users\Michael\Documents\PublicDistro\Source\Server\serverExample\obj\Debug\serverExample.exe
+C:\Users\Michael\Documents\PublicDistro\Source\Server\serverExample\obj\Debug\serverExample.pdb
+D:\Projects\xsDevelopment_ChatNetworkR2\Source\Server\serverExample\bin\Debug\serverExample.exe.config
+D:\Projects\xsDevelopment_ChatNetworkR2\Source\Server\serverExample\obj\Debug\serverExample.exe
+D:\Projects\xsDevelopment_ChatNetworkR2\Source\Server\serverExample\obj\Debug\serverExample.pdb
+D:\Projects\xsDevelopment_ChatNetworkR2\Source\Server\serverExample\bin\Debug\serverExample.exe
+D:\Projects\xsDevelopment_ChatNetworkR2\Source\Server\serverExample\bin\Debug\serverExample.pdb
+D:\Projects\xsDevelopment_ChatNetworkR2\Source\Server\serverExample\bin\Debug\System.Data.SQLite.dll
+D:\Projects\xsDevelopment_ChatNetworkR2\Source\Server\serverExample\obj\Debug\serverExample.csprojResolveAssemblyReference.cache

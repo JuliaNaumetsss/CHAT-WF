@@ -1,0 +1,6 @@
+C:\Users\Michael\Documents\Visual Studio 2012\Projects\serverExample\serverExample\bin\Release\serverExample.exe.config
+C:\Users\Michael\Documents\Visual Studio 2012\Projects\serverExample\serverExample\bin\Release\serverExample.exe
+C:\Users\Michael\Documents\Visual Studio 2012\Projects\serverExample\serverExample\bin\Release\serverExample.pdb
+C:\Users\Michael\Documents\Visual Studio 2012\Projects\serverExample\serverExample\bin\Release\System.Data.SQLite.dll
+C:\Users\Michael\Documents\Visual Studio 2012\Projects\serverExample\serverExample\obj\Release\serverExample.exe
+C:\Users\Michael\Documents\Visual Studio 2012\Projects\serverExample\serverExample\obj\Release\serverExample.pdb
